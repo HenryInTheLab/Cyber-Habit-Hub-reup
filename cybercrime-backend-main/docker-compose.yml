@@ -1,0 +1,17 @@
+services:
+  web:
+    build: .
+    command: gunicorn backend.wsgi:application --bind 0.0.0.0:8000
+    volumes:
+      - .:/app
+    ports:
+      - "80:8000"
+    environment:
+      DJANGO_SETTINGS_MODULE: backend.settings
+      SECRET_KEY: ${SECRET_KEY}
+      DJANGO_DEBUG: ${DJANGO_DEBUG}
+      DB_NAME: ${DB_NAME}
+      DB_USER: ${DB_USER}
+      DB_PWD: ${DB_PWD}
+      DB_HOST: ${DB_HOST}
+      DB_PORT: ${DB_PORT}
